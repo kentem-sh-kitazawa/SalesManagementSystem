@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route
           path="/ProductRegisterForm"
-          element={<ProductRegisterForm />}
+          element={<ProductRegisterForm setProductStocks={setProductStocks} />}
         ></Route>
         <Route
           path="/ProductPriceManageForm"
