@@ -1,5 +1,26 @@
+import { useNavigate } from "react-router-dom";
+
 const ProductStockManageForm = () => {
-  return <div>ProductStockManageForm</div>;
+  //在庫がなくても見られる
+  const navigate = useNavigate();
+  return (
+    <>
+      <table>
+        <th>商品名</th>
+        <th>仕入日</th>
+        <th>仕入価格</th>
+        <th>販売価格</th>
+        <th>在庫数</th>
+      </table>
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        戻る
+      </button>
+    </>
+  );
 };
 
 export default ProductStockManageForm;
