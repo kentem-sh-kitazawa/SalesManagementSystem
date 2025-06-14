@@ -5,20 +5,13 @@ import ProductPriceManageForm from "./components/ProductPriceManageForm";
 import ProductSalesForm from "./components/ProductSalesForm";
 import ProductStockManageForm from "./components/ProductStockManageForm";
 import SalesHistoryForm from "./components/SalesHistoryForm";
-import NavigationPanel from "./components/NavigationPanel";
-import TodaySalesSummary from "./components/TodaySalesSummary";
+import HomePage from "./components/HomePage";
 function App() {
   return (
     <Router>
-      <>
-        <p>販売管理システム</p>
-        <div>
-          <NavigationPanel />
-          <TodaySalesSummary />
-        </div>
-      </>
+      <></>
       <Routes>
-        <Route path="/"></Route>
+        <Route path="/" element={<HomePage />}></Route>
         <Route
           path="/ProductRegisterForm"
           element={<ProductRegisterForm />}
