@@ -1,6 +1,11 @@
 import { useNavigate } from "react-router-dom";
-
-const ProductPriceManageForm = () => {
+import type { ProductStockType } from "../Types/ProductStockType";
+import type { Dispatch, SetStateAction } from "react";
+type Props = {
+  productStocks: ProductStockType[];
+  setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
+};
+const ProductPriceManageForm = ({ productStocks, setProductStocks }: Props) => {
   const navigate = useNavigate();
   return (
     <div>
@@ -8,7 +13,9 @@ const ProductPriceManageForm = () => {
       <label>
         商品
         <select>
-          <option>a</option>
+          {productStocks.map((productStock) => (
+            <option value={productStock.id}>{productStock.productName}</option>
+          ))}
         </select>
       </label>
       <label>
