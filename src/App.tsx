@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ProductRegisterForm from "./components/ProductRegisterForm";
 import ProductPriceManageForm from "./components/ProductPriceManageForm";
@@ -14,6 +14,9 @@ function App() {
   const [productStocks, setProductStocks] = useState<ProductStockType[]>([]);
   //販売した商品を管理するstate
   const [soldProducts, setsoldProducts] = useState<SoldProductType[]>([]);
+  useEffect(() => {
+    console.log(productStocks);
+  }, [productStocks]);
   return (
     <Router>
       <></>

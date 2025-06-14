@@ -1,5 +1,6 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 import type { ProductStockType } from "../Types/ProductStockType";
 type Props = {
@@ -25,6 +26,7 @@ const ProductRegisterForm = ({ setProductStocks }: Props) => {
       <button
         onClick={() => {
           const newProduct: ProductStockType = {
+            id: uuidv4(),
             productName: newProductName,
           };
           setProductStocks((productStock) => [...productStock, newProduct]);
