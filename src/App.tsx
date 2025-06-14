@@ -8,15 +8,15 @@ import ProductStockManageForm from "./components/ProductStockManageForm";
 import SalesHistoryForm from "./components/SalesHistoryForm";
 import HomePage from "./components/HomePage";
 import type { ProductStockType } from "./Types/ProductStockType";
-import type { SoldProductType } from "./Types/soldProductType";
+// import type { SoldProductType } from "./Types/soldProductType";
 function App() {
   //在庫を管理するstate
   const [productStocks, setProductStocks] = useState<ProductStockType[]>([]);
   //販売した商品を管理するstate
-  const [soldProducts, setsoldProducts] = useState<SoldProductType[]>([]);
-  useEffect(() => {
-    console.log(productStocks);
-  }, [productStocks]);
+  // const [soldProducts, setsoldProducts] = useState<SoldProductType[]>([]);
+  // useEffect(() => {
+  //   console.log(productStocks);
+  // }, [productStocks]);
   return (
     <Router>
       <></>
@@ -28,7 +28,12 @@ function App() {
         ></Route>
         <Route
           path="/ProductPriceManageForm"
-          element={<ProductPriceManageForm />}
+          element={
+            <ProductPriceManageForm
+              productStocks={productStocks}
+              setProductStocks={setProductStocks}
+            />
+          }
         ></Route>
         <Route path="/ProductSalesForm" element={<ProductSalesForm />}></Route>
         <Route
