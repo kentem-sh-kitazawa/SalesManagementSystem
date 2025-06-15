@@ -7,12 +7,14 @@ type Props = {
   productStocks: ProductStockType[];
   setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
   setsoldProducts: Dispatch<SetStateAction<SoldProductType[]>>;
+  getDate: () => string;
 };
 
 const ProductSalesForm = ({
   productStocks,
   setProductStocks,
   setsoldProducts,
+  getDate,
 }: Props) => {
   const navigate = useNavigate();
   return (
