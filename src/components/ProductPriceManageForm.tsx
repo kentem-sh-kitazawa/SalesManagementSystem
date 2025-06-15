@@ -67,7 +67,9 @@ const ProductPriceManageForm = ({
               productStock.id === selectProductIdRef.current
                 ? {
                     ...productStock,
-                    stockQuantiry: Number(stockQuantiryRef.current?.value),
+                    stockQuantiry:
+                      (productStock.stockQuantiry ?? 0) +
+                      Number(stockQuantiryRef.current?.value),
                     purchasePrice: Number(purchasePriceRef.current?.value),
                     salePrice: Number(salePriceRef.current?.value),
                     purchaseDate: getDate(),
