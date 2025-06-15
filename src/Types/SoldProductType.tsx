@@ -1,7 +1,7 @@
 export type SoldProductType = {
   soldProductName: string;
   salePrice: number;
-  stockQuantiry: number;
+  soldQuantiry: number;
   subTotal: number;
   salesDate: string;
 };
