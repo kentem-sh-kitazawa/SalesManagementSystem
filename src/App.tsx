@@ -14,9 +14,16 @@ function App() {
   const [productStocks, setProductStocks] = useState<ProductStockType[]>([]);
   //販売した商品を管理するstate
   const [soldProducts, setsoldProducts] = useState<SoldProductType[]>([]);
-  // useEffect(() => {
-  //   console.log(productStocks);
-  // }, [productStocks]);
+
+  const getDate = () => {
+    const purchaseDate = new Date();
+    return `${purchaseDate.getFullYear()}年${
+      purchaseDate.getMonth() + 1
+    }月${purchaseDate.getDate()}日`;
+  };
+  useEffect(() => {
+    console.log(productStocks);
+  }, [productStocks]);
   return (
     <Router>
       <></>

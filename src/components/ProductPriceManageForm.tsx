@@ -11,7 +11,11 @@ type Props = {
   productStocks: ProductStockType[];
   setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
 };
-const ProductPriceManageForm = ({ productStocks, setProductStocks }: Props) => {
+const ProductPriceManageForm = ({
+  productStocks,
+  setProductStocks,
+  getDate,
+}: Props) => {
   const navigate = useNavigate();
   //名前
   const selectProductNameRef = useRef<string>("");
@@ -21,17 +25,11 @@ const ProductPriceManageForm = ({ productStocks, setProductStocks }: Props) => {
   const purchasePriceRef = useRef<HTMLInputElement>(null);
   //販売価格
   const salePriceRef = useRef<HTMLInputElement>(null);
-  //販売日
-  const purchaseDate = new Date();
 
-  const purchaseDateText = `${purchaseDate.getFullYear()}年${
-    purchaseDate.getMonth() + 1
-  }月${purchaseDate.getDate()}日`;
   const handleSelectProductChange = (
     selectProduct: ChangeEvent<HTMLSelectElement>
   ) => {
-    selectProductNameRef.current = selectProduct.target.value;
-    console.log(selectProduct.target.value);
+    selectProductIdRef.current = selectProduct.target.value;
   };
   return (
     <div>
@@ -58,7 +56,7 @@ const ProductPriceManageForm = ({ productStocks, setProductStocks }: Props) => {
         販売価格
         <input type="number" ref={salePriceRef}></input>
       </label>
-      <p>仕入日:{purchaseDateText}</p>
+      <p>仕入日:{getDate()}</p>
       <button
         onClick={() => {
           //商品の情報を登録
@@ -71,7 +69,7 @@ const ProductPriceManageForm = ({ productStocks, setProductStocks }: Props) => {
                     stockQuantiry: Number(stockQuantiryRef.current?.value),
                     purchasePrice: Number(purchasePriceRef.current?.value),
                     salePrice: Number(salePriceRef.current?.value),
-                    purchaseDate: purchaseDateText,
+                    purchaseDate: getDate(),
                   }
                 : productStock
           );
