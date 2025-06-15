@@ -17,6 +17,17 @@ const ProductSalesForm = ({
   getDate,
 }: Props) => {
   const navigate = useNavigate();
+  //判定用のid
+  const soldProductIdRef = useRef<string>("");
+  //販売数
+  const soldQuantiryRef = useRef<HTMLInputElement>(null);
+  //販売金額（小計）
+  const subTotalRef = useRef<HTMLInputElement>(null);
+  const handleSelectProductChange = (
+    selectProduct: ChangeEvent<HTMLSelectElement>
+  ) => {
+    soldProductIdRef.current = selectProduct.target.value;
+  };
   return (
     <div>
       <label>
