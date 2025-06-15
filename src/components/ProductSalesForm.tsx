@@ -192,7 +192,6 @@ const ProductSalesForm = ({
       </button>
     </div>
   );
-  //在庫がなかったときにアラート
 };
 
 export default ProductSalesForm;
