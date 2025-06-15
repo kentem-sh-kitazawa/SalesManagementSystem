@@ -39,10 +39,20 @@ function App() {
             <ProductPriceManageForm
               productStocks={productStocks}
               setProductStocks={setProductStocks}
+              getDate={getDate}
             />
           }
         ></Route>
-        <Route path="/ProductSalesForm" element={<ProductSalesForm />}></Route>
+        <Route
+          path="/ProductSalesForm"
+          element={
+            <ProductSalesForm
+              productStocks={productStocks}
+              setProductStocks={setProductStocks}
+              setsoldProducts={setsoldProducts}
+            />
+          }
+        ></Route>
         <Route
           path="/ProductStockManageForm"
           element={<ProductStockManageForm />}
