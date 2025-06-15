@@ -20,7 +20,7 @@ const ProductSalesForm = ({
 }: Props) => {
   const navigate = useNavigate();
   //判定用のid
-  const soldProductIdRef = useRef<string>("");
+  const soldProductIdRef = useRef<string>(productStocks[0].id);
   //販売数
   const soldQuantiryRef = useRef<HTMLInputElement>(null);
   //販売金額（小計）
