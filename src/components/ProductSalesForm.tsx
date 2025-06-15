@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import {
+  useRef,
+  type ChangeEvent,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
+
 import type { ProductStockType } from "../Types/ProductStockType";
-import type { Dispatch, SetStateAction } from "react";
 import type { SoldProductType } from "../Types/SoldProductType";
 
 type Props = {
