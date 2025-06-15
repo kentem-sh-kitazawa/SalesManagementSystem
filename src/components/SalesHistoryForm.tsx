@@ -6,11 +6,15 @@ const SalesHistoryForm = () => {
   return (
     <>
       <table>
-        <th>商品名</th>
-        <th>販売価格</th>
-        <th>販売数</th>
-        <th>小計</th>
-        <th>販売日</th>
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>販売価格</th>
+            <th>販売数</th>
+            <th>小計</th>
+            <th>販売日</th>
+          </tr>
+        </thead>
       </table>
       <button
         onClick={() => {
