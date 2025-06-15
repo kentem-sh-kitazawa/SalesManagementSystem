@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import {
   useRef,
+  useState,
   type ChangeEvent,
   type Dispatch,
   type SetStateAction,
@@ -16,7 +17,11 @@ type Props = {
   setSoldProducts: Dispatch<SetStateAction<SoldProductType[]>>;
   getDate: () => string;
 };
-
+type todaySoldProducts = {
+  productName: string;
+  todaySoldQuantiry: number;
+  id: string;
+};
 const ProductSalesForm = ({
   productStocks,
   soldProducts,
@@ -29,7 +34,9 @@ const ProductSalesForm = ({
   const soldProductIdRef = useRef<string>(productStocks[0].id);
   //販売数
   const soldQuantiryRef = useRef<HTMLInputElement>(null);
-
+  const [todaySoldProducts, setTodaySoldProducts] = useState<
+    todaySoldProducts[]
+  >([]);
   const handleSelectProductChange = (
     selectProduct: ChangeEvent<HTMLSelectElement>
   ) => {
