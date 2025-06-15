@@ -18,8 +18,8 @@ const ProductPriceManageForm = ({
   getDate,
 }: Props) => {
   const navigate = useNavigate();
-  //名前
-  const selectProductNameRef = useRef<string>("");
+  //判定用のid
+  const selectProductIdRef = useRef<string>(productStocks[0].id);
   //仕入数
   const stockQuantiryRef = useRef<HTMLInputElement>(null);
   //仕入価格
@@ -64,7 +64,7 @@ const ProductPriceManageForm = ({
           const beforeProductsStocks: ProductStockType[] = [...productStocks];
           const updataSelectProducts = beforeProductsStocks.map(
             (productStock) =>
-              productStock.id === selectProductNameRef.current
+              productStock.id === selectProductIdRef.current
                 ? {
                     ...productStock,
                     stockQuantiry: Number(stockQuantiryRef.current?.value),
