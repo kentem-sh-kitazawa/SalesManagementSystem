@@ -48,8 +48,10 @@ function App() {
           element={
             <ProductSalesForm
               productStocks={productStocks}
+              soldProducts={soldProducts}
               setProductStocks={setProductStocks}
-              setsoldProducts={setsoldProducts}
+              setSoldProducts={setSoldProducts}
+              getDate={getDate}
             />
           }
         ></Route>

@@ -5,15 +5,17 @@ import type { SoldProductType } from "../Types/SoldProductType";
 
 type Props = {
   productStocks: ProductStockType[];
+  soldProducts: SoldProductType[];
   setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
-  setsoldProducts: Dispatch<SetStateAction<SoldProductType[]>>;
+  setSoldProducts: Dispatch<SetStateAction<SoldProductType[]>>;
   getDate: () => string;
 };
 
 const ProductSalesForm = ({
   productStocks,
+  soldProducts,
   setProductStocks,
-  setsoldProducts,
+  setSoldProducts,
   getDate,
 }: Props) => {
   const navigate = useNavigate();
