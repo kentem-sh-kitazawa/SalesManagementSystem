@@ -6,11 +6,15 @@ const ProductStockManageForm = () => {
   return (
     <>
       <table>
-        <th>商品名</th>
-        <th>仕入日</th>
-        <th>仕入価格</th>
-        <th>販売価格</th>
-        <th>在庫数</th>
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>仕入日</th>
+            <th>仕入価格</th>
+            <th>販売価格</th>
+            <th>在庫数</th>
+          </tr>
+        </thead>
       </table>
       <button
         onClick={() => {
