@@ -44,8 +44,38 @@ const ProductSalesForm = ({
         販売数
         <input type="number"></input>
       </label>
-      <p>販売日</p>
-      <button>追加</button>
+      <p>販売日:{getDate()}</p>
+      <button
+        onClick={() => {
+          const beforeProductsStocks: ProductStockType[] = [...productStocks];
+          const updataSelectProducts = beforeProductsStocks.map(
+            (productStock) =>
+              productStock.id === soldProductIdRef.current
+                ? {
+                    ...productStock,
+                    stockQuantiry:
+                      (productStock.stockQuantiry ?? 0) -
+                      Number(soldQuantiryRef.current?.value),
+                  }
+                : productStock
+          );
+          setProductStocks(updataSelectProducts);
+          // setProductStocks((prev) =>
+          //   prev.map((productStock) =>
+          //     productStock.id === soldProductIdRef.current
+          //       ? Number(soldProductIdRef.current)>productStock.stockQuantiry ?{
+          //           ...productStock,
+          //           stockQuantiry:
+          //             (productStock.stockQuantiry ?? 0) -
+          //             Number(soldQuantiryRef.current?.value),
+          //         }
+          //       : productStock
+          //   )
+          // );
+        }}
+      >
+        追加
+      </button>
       <p>カート</p>
       <table>
         <tr>
