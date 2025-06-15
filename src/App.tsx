@@ -8,12 +8,12 @@ import ProductStockManageForm from "./components/ProductStockManageForm";
 import SalesHistoryForm from "./components/SalesHistoryForm";
 import HomePage from "./components/HomePage";
 import type { ProductStockType } from "./Types/ProductStockType";
-// import type { SoldProductType } from "./Types/soldProductType";
+import type { SoldProductType } from "./Types/SoldProductType";
 function App() {
   //在庫を管理するstate
   const [productStocks, setProductStocks] = useState<ProductStockType[]>([]);
   //販売した商品を管理するstate
-  const [soldProducts, setsoldProducts] = useState<SoldProductType[]>([]);
+  const [soldProducts, setSoldProducts] = useState<SoldProductType[]>([]);
 
   const getDate = () => {
     const purchaseDate = new Date();
