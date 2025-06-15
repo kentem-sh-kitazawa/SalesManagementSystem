@@ -13,7 +13,7 @@ function App() {
   //在庫を管理するstate
   const [productStocks, setProductStocks] = useState<ProductStockType[]>([]);
   //販売した商品を管理するstate
-  // const [soldProducts, setsoldProducts] = useState<SoldProductType[]>([]);
+  const [soldProducts, setsoldProducts] = useState<SoldProductType[]>([]);
   // useEffect(() => {
   //   console.log(productStocks);
   // }, [productStocks]);
