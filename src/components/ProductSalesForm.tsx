@@ -23,8 +23,7 @@ const ProductSalesForm = ({
   const soldProductIdRef = useRef<string>(productStocks[0].id);
   //販売数
   const soldQuantiryRef = useRef<HTMLInputElement>(null);
-  //販売金額（小計）
-  const subTotalRef = useRef<HTMLInputElement>(null);
+
   const handleSelectProductChange = (
     selectProduct: ChangeEvent<HTMLSelectElement>
   ) => {
@@ -103,18 +102,6 @@ const ProductSalesForm = ({
                 : productStock
           );
           setProductStocks(updataSelectProducts);
-          // setProductStocks((prev) =>
-          //   prev.map((productStock) =>
-          //     productStock.id === soldProductIdRef.current
-          //       ? Number(soldProductIdRef.current)>productStock.stockQuantiry ?{
-          //           ...productStock,
-          //           stockQuantiry:
-          //             (productStock.stockQuantiry ?? 0) -
-          //             Number(soldQuantiryRef.current?.value),
-          //         }
-          //       : productStock
-          //   )
-          // );
         }}
       >
         追加
