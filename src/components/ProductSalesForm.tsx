@@ -50,6 +50,47 @@ const ProductSalesForm = ({
       <button
         onClick={() => {
           const beforeProductsStocks: ProductStockType[] = [...productStocks];
+          const selectProduct = beforeProductsStocks.find(
+            (product) => product.id === soldProductIdRef.current
+          );
+          setSoldProducts((prev) => {
+            const beforeSoldProductsStocks: SoldProductType[] = [
+              ...soldProducts,
+            ];
+            const selectSoldProduct = beforeSoldProductsStocks.find(
+              (product) => product.id === soldProductIdRef.current
+            );
+            if (selectSoldProduct) {
+              return prev.map((product) =>
+                product.id === selectProduct?.id
+                  ? {
+                      ...product,
+                      soldQuantiry:
+                        product.soldQuantiry +
+                        Number(soldQuantiryRef.current?.value),
+                      subTotal:
+                        Number(soldQuantiryRef.current?.value) *
+                        selectProduct!.salePrice!,
+                      salesDate: getDate(),
+                    }
+                  : product
+              );
+            } else {
+              return [
+                ...prev,
+                {
+                  soldProductName: selectProduct!.productName,
+                  salePrice: selectProduct!.salePrice!,
+                  soldQuantiry: Number(soldQuantiryRef.current?.value),
+                  subTotal:
+                    Number(soldQuantiryRef.current?.value) *
+                    selectProduct!.salePrice!,
+                  salesDate: getDate(),
+                  id: selectProduct!.id,
+                },
+              ];
+            }
+          });
           const updataSelectProducts = beforeProductsStocks.map(
             (productStock) =>
               productStock.id === soldProductIdRef.current
