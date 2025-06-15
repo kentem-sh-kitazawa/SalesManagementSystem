@@ -1,21 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import type { ProductStockType } from "../Types/ProductStockType";
 import {
   useRef,
   type ChangeEvent,
   type Dispatch,
   type SetStateAction,
 } from "react";
+
+import type { ProductStockType } from "../Types/ProductStockType";
 type Props = {
   productStocks: ProductStockType[];
   setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
 };
 const ProductPriceManageForm = ({ productStocks, setProductStocks }: Props) => {
   const navigate = useNavigate();
+  //名前
   const selectProductNameRef = useRef<string>("");
-  const stockQuantiryRef = useRef(0);
-  const purchasePriceRef = useRef(0);
-  const salePriceRef = useRef(0);
+  //仕入数
+  const stockQuantiryRef = useRef<HTMLInputElement>(null);
+  //仕入価格
+  const purchasePriceRef = useRef<HTMLInputElement>(null);
+  //販売価格
+  const salePriceRef = useRef<HTMLInputElement>(null);
+  //販売日
   const purchaseDate = new Date();
 
   const purchaseDateText = `${purchaseDate.getFullYear()}年${
@@ -25,6 +31,7 @@ const ProductPriceManageForm = ({ productStocks, setProductStocks }: Props) => {
     selectProduct: ChangeEvent<HTMLSelectElement>
   ) => {
     selectProductNameRef.current = selectProduct.target.value;
+    console.log(selectProduct.target.value);
   };
   return (
     <div>
@@ -33,56 +40,42 @@ const ProductPriceManageForm = ({ productStocks, setProductStocks }: Props) => {
         商品
         <select onChange={handleSelectProductChange}>
           {productStocks.map((productStock) => (
-            <option value={productStock.id}>{productStock.productName}</option>
+            <option value={productStock.id} key={productStock.id}>
+              {productStock.productName}
+            </option>
           ))}
         </select>
       </label>
       <label>
         仕入数
-        <input
-          type="number"
-          onChange={(stockQuantiry) =>
-            (stockQuantiryRef.current = Number(stockQuantiry.target.value))
-          }
-        ></input>
+        <input type="number" ref={stockQuantiryRef}></input>
       </label>
       <label>
         仕入価格
-        <input
-          type="number"
-          onChange={(purchasePrice) =>
-            (purchasePriceRef.current = Number(purchasePrice.target.value))
-          }
-        ></input>
+        <input type="number" ref={purchasePriceRef}></input>
       </label>
       <label>
         販売価格
-        <input
-          type="number"
-          onChange={(salePrice) =>
-            (salePriceRef.current = Number(salePrice.target.value))
-          }
-        ></input>
+        <input type="number" ref={salePriceRef}></input>
       </label>
       <p>仕入日:{purchaseDateText}</p>
       <button
         onClick={() => {
           //商品の情報を登録
           const beforeProductsStocks: ProductStockType[] = [...productStocks];
-          const selectProduct = beforeProductsStocks.find((productStock) => {
-            return productStock.productName === selectProductNameRef.current;
-          });
-          const updataSelectProduct = [
-            ...beforeProductsStocks,
-            {
-              ...selectProduct!,
-              stockQuantiry: stockQuantiryRef.current,
-              purchasePrice: purchasePriceRef.current,
-              salePrice: salePriceRef.current,
-              purchaseDate: purchaseDateText,
-            },
-          ];
-          setProductStocks(updataSelectProduct);
+          const updataSelectProducts = beforeProductsStocks.map(
+            (productStock) =>
+              productStock.id === selectProductNameRef.current
+                ? {
+                    ...productStock,
+                    stockQuantiry: Number(stockQuantiryRef.current?.value),
+                    purchasePrice: Number(purchasePriceRef.current?.value),
+                    salePrice: Number(salePriceRef.current?.value),
+                    purchaseDate: purchaseDateText,
+                  }
+                : productStock
+          );
+          setProductStocks(updataSelectProducts);
           navigate("/");
         }}
       >
