@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import ProductRegisterForm from "./components/ProductRegisterForm";
 import ProductPriceManageForm from "./components/ProductPriceManageForm";
@@ -21,9 +21,13 @@ function App() {
       purchaseDate.getMonth() + 1
     }月${purchaseDate.getDate()}日`;
   };
-  useEffect(() => {
-    console.log(productStocks);
-  }, [productStocks]);
+
+  // useEffect(() => {
+  //   console.log(productStocks);
+  // }, [productStocks]);
+  // useEffect(() => {
+  //   console.log(soldProducts);
+  // }, [soldProducts]);
   return (
     <Router>
       <></>
