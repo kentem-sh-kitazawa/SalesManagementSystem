@@ -1,6 +1,19 @@
 import { useNavigate } from "react-router-dom";
+import type { ProductStockType } from "../Types/ProductStockType";
+import type { Dispatch, SetStateAction } from "react";
+import type { SoldProductType } from "../Types/SoldProductType";
 
-const ProductSalesForm = () => {
+type Props = {
+  productStocks: ProductStockType[];
+  setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
+  setsoldProducts: Dispatch<SetStateAction<SoldProductType[]>>;
+};
+
+const ProductSalesForm = ({
+  productStocks,
+  setProductStocks,
+  setsoldProducts,
+}: Props) => {
   const navigate = useNavigate();
   return (
     <div>
