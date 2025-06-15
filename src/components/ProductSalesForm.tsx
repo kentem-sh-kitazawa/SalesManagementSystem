@@ -121,13 +121,20 @@ const ProductSalesForm = ({
       </button>
       <p>カート</p>
       <table>
-        <tr>
-          <th>商品名</th>
-          <th>個数</th>
-        </tr>
-        <tr>
-          <td>aaa</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>個数</th>
+          </tr>
+        </thead>
+        <tbody>
+          {todaySoldProducts.map((products) => (
+            <tr key={products.id}>
+              <td>{products.productName}</td>
+              <td>{products.todaySoldQuantiry}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <button
         onClick={() => {
