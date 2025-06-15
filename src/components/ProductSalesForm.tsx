@@ -44,7 +44,7 @@ const ProductSalesForm = ({
       </label>
       <label>
         販売数
-        <input type="number"></input>
+        <input type="number" ref={soldQuantiryRef}></input>
       </label>
       <p>販売日:{getDate()}</p>
       <button
