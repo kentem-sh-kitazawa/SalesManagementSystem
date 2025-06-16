@@ -70,7 +70,12 @@ function App() {
         ></Route>
         <Route
           path="/ProductStockManageForm"
-          element={<ProductStockManageForm />}
+          element={
+            <ProductStockManageForm
+              productStocks={productStocks}
+              products={products}
+            />
+          }
         ></Route>
         <Route path="/SalesHistoryForm" element={<SalesHistoryForm />}></Route>
       </Routes>

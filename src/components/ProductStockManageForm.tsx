@@ -1,15 +1,12 @@
 import { useNavigate } from "react-router-dom";
-// import type { ProductStockType } from "../Types/ProductStockType";
-// import type { Dispatch, SetStateAction } from "react";
-// import type { SoldProductType } from "../Types/SoldProductType";
+import type { ProductStockType } from "../Types/ProductStockType";
+import type { Producttype } from "../Types/Products";
 
-// type Props = {
-//   productStocks: ProductStockType[];
-//   setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
-//   setsoldProducts: Dispatch<SetStateAction<SoldProductType[]>>;
-// };
-
-const ProductStockManageForm = () => {
+type Props = {
+  productStocks: ProductStockType[];
+  products: Producttype[];
+};
+const ProductStockManageForm = ({ productStocks, products }: Props) => {
   //在庫がなくても見られる
   const navigate = useNavigate();
   return (
