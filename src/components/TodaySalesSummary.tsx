@@ -6,7 +6,10 @@ const TodaySalesSummary = () => {
         <thead>
           <tr>
             <th>商品名</th>
+            <th>仕入価格</th>
             <th>販売価格</th>
+            <th>仕入日</th>
+            <th>販売日</th>
             <th>販売数</th>
             <th>小計</th>
           </tr>
