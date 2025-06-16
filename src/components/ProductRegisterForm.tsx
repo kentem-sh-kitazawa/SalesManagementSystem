@@ -26,11 +26,11 @@ const ProductRegisterForm = ({ setProducts, products }: Props) => {
       </label>
       <button
         onClick={() => {
-          const newProduct: ProductStockType = {
+          const newProduct: Producttype = {
             id: uuidv4(),
             productName: newProductName,
           };
-          setProductStocks((productStock) => [...productStock, newProduct]);
+          setProducts((product) => [...product, newProduct]);
           navigate("/");
         }}
       >
