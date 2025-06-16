@@ -23,7 +23,7 @@ const ProductStockManageForm = ({ productStocks, products }: Props) => {
         </thead>
         <tbody>
           {productStocks.map((productStock) => (
-            <tr>
+            <tr key={productStock.id}>
               <td>
                 {products.map((product) => {
                   if (product.id === productStock.productId) {
