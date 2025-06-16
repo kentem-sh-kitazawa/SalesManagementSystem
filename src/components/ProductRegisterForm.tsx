@@ -1,4 +1,4 @@
-import { useState, type Dispatch } from "react";
+import { useRef, type Dispatch } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -10,32 +10,24 @@ type Props = {
 const ProductRegisterForm = ({ setProducts, products }: Props) => {
   //商品名を登録する
   const navigate = useNavigate();
-  const [newProductName, setNewProductName] = useState<string>("");
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const handleOnRegister = () => {
+    if (nameInputRef.current) {
+      const newProduct: Producttype = {
+        id: uuidv4(),
+        productName: nameInputRef.current.value,
+      };
+      setProducts((product) => [...product, newProduct]);
+    }
+  };
   return (
     <div>
       <h2>商品登録</h2>
       <label>
         商品名
-        <input
-          type="text"
-          value={newProductName}
-          onChange={(newProductName) =>
-            setNewProductName(newProductName.target.value)
-          }
-        />
+        <input type="text" ref={nameInputRef} />
       </label>
-      <button
-        onClick={() => {
-          const newProduct: Producttype = {
-            id: uuidv4(),
-            productName: newProductName,
-          };
-          setProducts((product) => [...product, newProduct]);
-          navigate("/");
-        }}
-      >
-        登録
-      </button>
+      <button onClick={handleOnRegister}>登録</button>
       <button
         onClick={() => {
           navigate("/");
