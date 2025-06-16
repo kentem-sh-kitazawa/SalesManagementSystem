@@ -87,6 +87,13 @@ const ProductPriceManageForm = ({
       >
         キャンセル
       </button>
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        戻る
+      </button>
     </div>
   );
 };
