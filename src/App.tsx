@@ -51,6 +51,7 @@ function App() {
             <ProductPriceManageForm
               productStocks={productStocks}
               setProductStocks={setProductStocks}
+              products={products}
               getDate={getDate}
             />
           }
