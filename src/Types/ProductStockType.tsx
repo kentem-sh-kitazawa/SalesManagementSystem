@@ -1,6 +1,6 @@
 export type ProductStockType = {
   id: string;
-  productName: string;
+  productId: string;
   stockQuantiry?: number;
   purchasePrice?: number;
   salePrice?: number;
