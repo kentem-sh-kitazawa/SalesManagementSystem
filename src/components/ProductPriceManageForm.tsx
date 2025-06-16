@@ -21,7 +21,7 @@ const ProductPriceManageForm = ({
 }: Props) => {
   const navigate = useNavigate();
   //判定用のid
-  const selectProductIdRef = useRef<string>(productStocks[0].id);
+  const selectProductIdRef = useRef<string>(products[0].id);
   //仕入数
   const stockQuantiryRef = useRef<HTMLInputElement>(null);
   //仕入価格
