@@ -43,6 +43,24 @@ const ProductRegisterForm = ({ setProducts, products }: Props) => {
       >
         キャンセル
       </button>
+      <table>
+        <thead>
+          <tr>
+            <td>確認</td>
+            <td>商品名</td>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product) => (
+            <tr key={product.id}>
+              <td>
+                <input type="checkbox" />
+              </td>
+              <td>{product.productName}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
