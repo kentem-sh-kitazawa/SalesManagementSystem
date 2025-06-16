@@ -63,19 +63,26 @@ const ProductPriceManageForm = ({
       <p>仕入日:{getDate()}</p>
       <button
         onClick={() => {
-          //商品の情報を登録
-          const selectProduct = products.find(
-            (product) => selectProductIdRef.current === product.id
-          );
-          const updataSelectProduct = {
-            id: uuidv4(),
-            productId: selectProduct!.id,
-            stockQuantiry: Number(stockQuantiryRef.current?.value),
-            purchasePrice: Number(purchasePriceRef.current?.value),
-            salePrice: Number(salePriceRef.current?.value),
-            purchaseDate: getDate(),
-          };
-          setProductStocks((prev) => [...prev, updataSelectProduct]);
+          //商品の情報を登録 仕入価格よりも販売価格が安かったらアラート
+          if (
+            Number(purchasePriceRef.current?.value) >
+            Number(salePriceRef.current?.value)
+          ) {
+            alert("販売価格が仕入価格よりも安くなっています");
+          } else {
+            const selectProduct = products.find(
+              (product) => selectProductIdRef.current === product.id
+            );
+            const updataSelectProduct = {
+              id: uuidv4(),
+              productId: selectProduct!.id,
+              stockQuantiry: Number(stockQuantiryRef.current?.value),
+              purchasePrice: Number(purchasePriceRef.current?.value),
+              salePrice: Number(salePriceRef.current?.value),
+              purchaseDate: getDate(),
+            };
+            setProductStocks((prev) => [...prev, updataSelectProduct]);
+          }
         }}
       >
         仕入
