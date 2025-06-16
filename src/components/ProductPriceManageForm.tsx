@@ -7,13 +7,15 @@ import {
 } from "react";
 
 import type { ProductStockType } from "../Types/ProductStockType";
+import type { Producttype } from "../Types/Products";
 type Props = {
   productStocks: ProductStockType[];
+  products: Producttype[];
   setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
   getDate: () => string;
 };
 const ProductPriceManageForm = ({
-  productStocks,
+  products,
   setProductStocks,
   getDate,
 }: Props) => {
