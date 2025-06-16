@@ -5,6 +5,7 @@ import {
   type Dispatch,
   type SetStateAction,
 } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import type { ProductStockType } from "../Types/ProductStockType";
 import type { Producttype } from "../Types/Products";
@@ -63,23 +64,18 @@ const ProductPriceManageForm = ({
       <button
         onClick={() => {
           //商品の情報を登録
-          const beforeProductsStocks: ProductStockType[] = [...productStocks];
-          const updataSelectProducts = beforeProductsStocks.map(
-            (productStock) =>
-              productStock.id === selectProductIdRef.current
-                ? {
-                    ...productStock,
-                    stockQuantiry:
-                      (productStock.stockQuantiry ?? 0) +
-                      Number(stockQuantiryRef.current?.value),
-                    purchasePrice: Number(purchasePriceRef.current?.value),
-                    salePrice: Number(salePriceRef.current?.value),
-                    purchaseDate: getDate(),
-                  }
-                : productStock
+          const selectProduct = products.find(
+            (product) => selectProductIdRef.current === product.id
           );
-          setProductStocks(updataSelectProducts);
-          navigate("/");
+          const updataSelectProduct = {
+            id: uuidv4(),
+            productId: selectProduct!.id,
+            stockQuantiry: Number(stockQuantiryRef.current?.value),
+            purchasePrice: Number(purchasePriceRef.current?.value),
+            salePrice: Number(salePriceRef.current?.value),
+            purchaseDate: getDate(),
+          };
+          setProductStocks((prev) => [...prev, updataSelectProduct]);
         }}
       >
         仕入
