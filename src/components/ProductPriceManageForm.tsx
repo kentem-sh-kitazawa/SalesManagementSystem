@@ -9,17 +9,13 @@ import { v4 as uuidv4 } from "uuid";
 
 import type { ProductStockType } from "../Types/ProductStockType";
 import type { Producttype } from "../Types/Products";
+import { getDate } from "../utils/dateUtils";
 type Props = {
   productStocks: ProductStockType[];
   products: Producttype[];
   setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
-  getDate: () => string;
 };
-const ProductPriceManageForm = ({
-  products,
-  setProductStocks,
-  getDate,
-}: Props) => {
+const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
   const navigate = useNavigate();
   //判定用のid
   const selectProductIdRef = useRef<string>(products[0].id);

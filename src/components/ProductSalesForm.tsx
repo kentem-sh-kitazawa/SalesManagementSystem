@@ -15,7 +15,6 @@ type Props = {
   soldProducts: SoldProductType[];
   setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
   setSoldProducts: Dispatch<SetStateAction<SoldProductType[]>>;
-  getDate: () => string;
 };
 type todaySoldProducts = {
   productName: string;
@@ -27,7 +26,6 @@ const ProductSalesForm = ({
   soldProducts,
   setProductStocks,
   setSoldProducts,
-  getDate,
 }: Props) => {
   const navigate = useNavigate();
   //判定用のid
