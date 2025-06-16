@@ -2,11 +2,12 @@ import { useState, type Dispatch, type SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-import type { ProductStockType } from "../Types/ProductStockType";
+import type { Producttype } from "../Types/Products";
 type Props = {
-  setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
+  setProducts: Dispatch<React.SetStateAction<Producttype[]>>;
+  products: Producttype[];
 };
-const ProductRegisterForm = ({ setProductStocks }: Props) => {
+const ProductRegisterForm = ({ setProducts, products }: Props) => {
   //商品名を登録する
   const navigate = useNavigate();
   const [newProductName, setNewProductName] = useState<string>("");

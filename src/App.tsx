@@ -38,7 +38,13 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route
           path="/ProductRegisterForm"
-          element={<ProductRegisterForm setProductStocks={setProductStocks} />}
+          element={
+            <ProductRegisterForm
+              setProductStocks={setProductStocks}
+              setProducts={setProducts}
+              products={products}
+            />
+          }
         ></Route>
         <Route
           path="/ProductPriceManageForm"
