@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ProductRegisterForm from "./components/ProductRegisterForm";
 import ProductPriceManageForm from "./components/ProductPriceManageForm";
@@ -28,9 +28,9 @@ function App() {
   // useEffect(() => {
   //   console.log(productStocks);
   // }, [productStocks]);
-  // useEffect(() => {
-  //   console.log(soldProducts);
-  // }, [soldProducts]);
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
   return (
     <Router>
       <></>
@@ -40,7 +40,6 @@ function App() {
           path="/ProductRegisterForm"
           element={
             <ProductRegisterForm
-              setProductStocks={setProductStocks}
               setProducts={setProducts}
               products={products}
             />
