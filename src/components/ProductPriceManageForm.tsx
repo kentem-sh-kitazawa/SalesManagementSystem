@@ -40,9 +40,9 @@ const ProductPriceManageForm = ({
       <label>
         商品
         <select onChange={handleSelectProductChange}>
-          {productStocks.map((productStock) => (
-            <option value={productStock.id} key={productStock.id}>
-              {productStock.productName}
+          {products.map((product) => (
+            <option value={product.id} key={product.id}>
+              {product.productName}
             </option>
           ))}
         </select>
