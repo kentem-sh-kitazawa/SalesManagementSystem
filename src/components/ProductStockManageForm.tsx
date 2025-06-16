@@ -21,6 +21,23 @@ const ProductStockManageForm = ({ productStocks, products }: Props) => {
             <th>在庫数</th>
           </tr>
         </thead>
+        <tbody>
+          {productStocks.map((productStock) => (
+            <tr>
+              <td>
+                {products.map((product) => {
+                  if (product.id === productStock.productId) {
+                    return product.productName;
+                  }
+                })}
+              </td>
+              <td>{productStock.purchaseDate}</td>
+              <td>{productStock.purchasePrice}</td>
+              <td>{productStock.salePrice}</td>
+              <td>{productStock.stockQuantiry}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <button
         onClick={() => {
