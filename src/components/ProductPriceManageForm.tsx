@@ -36,14 +36,33 @@ const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
   };
 
   const handleOnPurcheseButton = () => {
-    if (Number(stockQuantiryRef.current!.value) === 0) {
-      setIsInputTextsCheck(true);
-    } else if (Number(purchasePriceRef.current!.value) === 0) {
-      setIsInputTextsCheck(true);
-    } else if (Number(salePriceRef.current!.value) === 0) {
-      setIsInputTextsCheck(true);
+    const isStockQuantiry = Number(stockQuantiryRef.current!.value) === 0;
+    const isPurchasePrice = Number(purchasePriceRef.current!.value) === 0;
+    const issalePrice = Number(salePriceRef.current!.value) === 0;
+    setIsInputTextsCheck(isStockQuantiry || isPurchasePrice || issalePrice);
+  };
+
+  //商品の情報を登録 仕入価格よりも販売価格が安かったらアラート
+  const handleRegisterProduct = () => {
+    const isProfitable =
+      Number(purchasePriceRef.current?.value) >
+      Number(salePriceRef.current?.value);
+
+    if (isProfitable) {
+      alert("販売価格が仕入価格よりも安くなっています");
     } else {
-      setIsInputTextsCheck(false);
+      const selectedProduct = products.find(
+        (product) => selectProductIdRef.current === product.id
+      );
+      const updataSelectedProduct: ProductStockType = {
+        id: uuidv4(),
+        productId: selectedProduct!.id,
+        stockQuantiry: Number(stockQuantiryRef.current?.value),
+        purchasePrice: Number(purchasePriceRef.current?.value),
+        salePrice: Number(salePriceRef.current?.value),
+        purchaseDate: getDate(),
+      };
+      setProductStocks((prev) => [...prev, updataSelectedProduct]);
     }
   };
 
@@ -85,31 +104,7 @@ const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
         ></input>
       </label>
       <p>仕入日:{getDate()}</p>
-      <button
-        disabled={isInputTextsCheck}
-        onClick={() => {
-          //商品の情報を登録 仕入価格よりも販売価格が安かったらアラート
-          if (
-            Number(purchasePriceRef.current?.value) >
-            Number(salePriceRef.current?.value)
-          ) {
-            alert("販売価格が仕入価格よりも安くなっています");
-          } else {
-            const selectProduct = products.find(
-              (product) => selectProductIdRef.current === product.id
-            );
-            const updataSelectProduct = {
-              id: uuidv4(),
-              productId: selectProduct!.id,
-              stockQuantiry: Number(stockQuantiryRef.current?.value),
-              purchasePrice: Number(purchasePriceRef.current?.value),
-              salePrice: Number(salePriceRef.current?.value),
-              purchaseDate: getDate(),
-            };
-            setProductStocks((prev) => [...prev, updataSelectProduct]);
-          }
-        }}
-      >
+      <button disabled={isInputTextsCheck} onClick={handleRegisterProduct}>
         仕入
       </button>
       <button
