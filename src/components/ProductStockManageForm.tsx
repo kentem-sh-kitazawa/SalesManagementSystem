@@ -25,11 +25,11 @@ const ProductStockManageForm = ({ productStocks, products }: Props) => {
           {productStocks.map((productStock) => (
             <tr key={productStock.id}>
               <td>
-                {products.map((product) => {
-                  if (product.id === productStock.productId) {
-                    return product.productName;
-                  }
-                })}
+                {
+                  products.find(
+                    (product) => product.id === productStock.productId
+                  )?.productName
+                }
               </td>
               <td>{productStock.purchaseDate}</td>
               <td>{productStock.purchasePrice}</td>
