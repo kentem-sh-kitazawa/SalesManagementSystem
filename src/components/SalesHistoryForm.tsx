@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import type { AllProductsType } from "../Types/AllProductsType";
-import { getPurchaseTotal, getSoldTotal } from "../utils/totalUtils";
+import { getProfitTotal, getSoldTotal } from "../utils/totalUtils";
 
 const SalesHistoryForm = ({
   soldProducts,
@@ -54,7 +54,8 @@ const SalesHistoryForm = ({
       </button>
       <p>売上合計:{getSoldTotal(soldProducts)}</p>
       <p>
-        利益合計:{getSoldTotal(soldProducts) - getPurchaseTotal(productStocks)}
+        利益合計:
+        {getProfitTotal(productStocks, soldProducts)}
       </p>
     </>
   );

@@ -75,8 +75,11 @@ const TodaySalesSummary = ({
           ))}
         </tbody>
       </table>
-      <p>売上合計:</p>
-      <p>利益合計:</p>
+      <p>売上合計:{getSoldTotal(todaySoldProducts)}</p>
+      <p>
+        利益合計:
+        {getProfitTotal(todayPurchaseInfo, todaySoldProducts)}
+      </p>
     </>
   );
 };
