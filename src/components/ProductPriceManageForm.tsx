@@ -32,6 +32,18 @@ const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
   ) => {
     selectProductIdRef.current = selectProduct.target.value;
   };
+
+  const handleOnPurcheseButton = () => {
+    if (Number(stockQuantiryRef.current!.value) === 0) {
+      setIsInputTextsCheck(true);
+    } else if (Number(purchasePriceRef.current!.value) === 0) {
+      setIsInputTextsCheck(true);
+    } else if (Number(salePriceRef.current!.value) === 0) {
+      setIsInputTextsCheck(true);
+    } else {
+      setIsInputTextsCheck(false);
+    }
+  };
   return (
     <div>
       <h2>仕入処理</h2>
@@ -47,18 +59,31 @@ const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
       </label>
       <label>
         仕入数
-        <input type="number" ref={stockQuantiryRef}></input>
+        <input
+          type="number"
+          ref={stockQuantiryRef}
+          onChange={handleOnPurcheseButton}
+        ></input>
       </label>
       <label>
         仕入価格
-        <input type="number" ref={purchasePriceRef}></input>
+        <input
+          type="number"
+          ref={purchasePriceRef}
+          onChange={handleOnPurcheseButton}
+        ></input>
       </label>
       <label>
         販売価格
-        <input type="number" ref={salePriceRef}></input>
+        <input
+          type="number"
+          ref={salePriceRef}
+          onChange={handleOnPurcheseButton}
+        ></input>
       </label>
       <p>仕入日:{getDate()}</p>
       <button
+        disabled={isInputTextsCheck}
         onClick={() => {
           //商品の情報を登録 仕入価格よりも販売価格が安かったらアラート
           if (
