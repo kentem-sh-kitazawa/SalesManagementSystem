@@ -1,4 +1,4 @@
-import { useRef, type Dispatch } from "react";
+import { useRef, useState, type Dispatch } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -22,12 +22,27 @@ const ProductRegisterForm = ({ setProducts, products }: Props) => {
       setProducts((product) => [...product, newProduct]);
     }
   };
+
+  const handleOnRegisterButton = () => {
+    if (nameInputRef.current!.value === "") {
+      setIsInputTextCheck(true);
+      console.log(true);
+    } else {
+      setIsInputTextCheck(false);
+      console.log(false);
+    }
+  };
+
   return (
     <div>
       <h2>商品登録</h2>
       <label>
         商品名
-        <input type="text" ref={nameInputRef} />
+        <input
+          type="text"
+          ref={nameInputRef}
+          onChange={handleOnRegisterButton}
+        />
       </label>
       <button onClick={handleOnRegister} disabled={isInputTextCheck}>
         登録
