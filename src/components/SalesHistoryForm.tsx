@@ -10,6 +10,18 @@ const SalesHistoryForm = ({
 }: AllProductsType) => {
   const navigate = useNavigate();
 
+  const renderProductName = (soldProductId: string) => {
+    const saleProductId = productStocks.find((productStock) => {
+      return soldProductId === productStock.productId;
+    })?.id;
+
+    const saleProductName = products.find((productid) => {
+      return productid.id === saleProductId;
+    })?.productName;
+
+    return saleProductName;
+  };
+
   return (
     <>
       <table>
@@ -25,18 +37,7 @@ const SalesHistoryForm = ({
         <tbody>
           {soldProducts.map((soldProduct) => (
             <tr key={soldProduct.id}>
-              <td>
-                {
-                  products.find((productid) => {
-                    return (
-                      productid.id ===
-                      productStocks.find((productStock) => {
-                        return soldProduct.productId === productStock.productId;
-                      })?.productId
-                    );
-                  })?.productName
-                }
-              </td>
+              <td>{renderProductName(soldProduct.productId)}</td>
               <td>{soldProduct.salePrice}</td>
               <td>{soldProduct.soldQuantiry}</td>
               <td>{soldProduct.salePrice * soldProduct.soldQuantiry}</td>
