@@ -32,6 +32,16 @@ const ProductSalesForm = ({
       return { id: product.id, isCheck: false };
     })
   );
+
+  const handleOnSaleButton = () => {
+    if (!checkBoxRef.current.find((product) => product.isCheck)) {
+      setIsInputCheck(true);
+    } else if (Number(soldQuantiryRef.current?.value) === 0) {
+      setIsInputCheck(true);
+    } else {
+      setIsInputCheck(false);
+    }
+  };
   const handleOnCheckBox = (selectId: string, value: boolean) => {
     checkBoxRef.current.forEach((checkBox) => {
       if (selectId === checkBox.id) {
@@ -80,9 +90,10 @@ const ProductSalesForm = ({
               <td>
                 <input
                   type="checkbox"
-                  onChange={(event) =>
-                    handleOnCheckBox(productStock.id, event.target.checked)
-                  }
+                  onChange={(event) => {
+                    handleOnCheckBox(productStock.id, event.target.checked);
+                    handleOnSaleButton();
+                  }}
                 />
               </td>
               <td>
@@ -96,13 +107,19 @@ const ProductSalesForm = ({
               <td>{productStock.purchasePrice}</td>
               <td>{productStock.salePrice}</td>
               <td>
-                <input type="number" ref={soldQuantiryRef}></input>
+                <input
+                  type="number"
+                  ref={soldQuantiryRef}
+                  onChange={handleOnSaleButton}
+                ></input>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button onClick={addSoldProduct}>販売</button>
+      <button onClick={addSoldProduct} disabled={isInputCheck}>
+        販売
+      </button>
       <button
         onClick={() => {
           navigate("/");
