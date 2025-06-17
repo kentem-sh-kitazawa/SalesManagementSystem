@@ -24,6 +24,28 @@ const SalesHistoryForm = ({ soldProducts, productStocks, products }: Props) => {
             <th>販売日</th>
           </tr>
         </thead>
+        <tbody>
+          {soldProducts.map((soldProduct) => (
+            <tr key={soldProduct.id}>
+              <td>
+                {
+                  products.find((productid) => {
+                    return (
+                      productid.id ===
+                      productStocks.find((productStock) => {
+                        return soldProduct.productId === productStock.productId;
+                      })?.productId
+                    );
+                  })?.productName
+                }
+              </td>
+              <td>{soldProduct.salePrice}</td>
+              <td>{soldProduct.soldQuantiry}</td>
+              <td>{soldProduct.salePrice * soldProduct.soldQuantiry}</td>
+              <td>{soldProduct.salesDate}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <button
         onClick={() => {
