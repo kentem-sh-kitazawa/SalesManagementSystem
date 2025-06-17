@@ -22,6 +22,31 @@ const TodaySalesSummary = ({
     })
     .filter((productStock) => productStock !== undefined);
 
+  const renderProductName = (todaySoldProductId: string) => {
+    const todaySoldProductName = products.find((productid) => {
+      return productid.id === todaySoldProductId;
+    })?.productName;
+    return todaySoldProductName;
+  };
+
+  const getSelectedIdProduct = (todaySoldProductId: string) => {
+    return productStocks.find(
+      (productStock) => productStock.productId === todaySoldProductId
+    );
+  };
+
+  const renderPaechesePrice = (todaySoldProductId: string) => {
+    const todaySoldPaechesePrice =
+      getSelectedIdProduct(todaySoldProductId)?.purchasePrice;
+    return todaySoldPaechesePrice;
+  };
+
+  const renderPurchaseDate = (todaySoldProductId: string) => {
+    const todaySoldPurchaseDate =
+      getSelectedIdProduct(todaySoldProductId)?.purchaseDate;
+    return todaySoldPurchaseDate;
+  };
+
   return (
     <>
       <p>本日の販売状況</p>
@@ -40,37 +65,10 @@ const TodaySalesSummary = ({
         <tbody>
           {todaySoldProducts.map((todaySoldProduct) => (
             <tr key={todaySoldProduct.id}>
-              <td>
-                {
-                  products.find((productid) => {
-                    return (
-                      productid.id ===
-                      productStocks.find((productStock) => {
-                        return (
-                          todaySoldProduct.productId === productStock.productId
-                        );
-                      })?.productId
-                    );
-                  })?.productName
-                }
-              </td>
-              <td>
-                {
-                  productStocks.find(
-                    (productStock) =>
-                      productStock.productId === todaySoldProduct.productId
-                  )?.purchasePrice
-                }
-              </td>
+              <td>{renderProductName(todaySoldProduct.productId)}</td>
+              <td>{renderPaechesePrice(todaySoldProduct.productId)}</td>
               <td>{todaySoldProduct.salePrice}</td>
-              <td>
-                {
-                  productStocks.find(
-                    (productStock) =>
-                      todaySoldProduct.productId === productStock.productId
-                  )?.purchaseDate
-                }
-              </td>
+              <td>{renderPurchaseDate(todaySoldProduct.productId)}</td>
               <td>{todaySoldProduct.salesDate}</td>
               <td>{todaySoldProduct.soldQuantiry}</td>
               <td>
