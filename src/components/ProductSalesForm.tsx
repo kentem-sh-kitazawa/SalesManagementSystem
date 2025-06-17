@@ -63,14 +63,7 @@ const ProductSalesForm = ({
 
   //販売数
   const soldQuantiryRef = useRef<HTMLInputElement>(null);
-  const [todaySoldProducts, setTodaySoldProducts] = useState<
-    todaySoldProducts[]
-  >([]);
-  const handleSelectProductChange = (
-    selectProduct: ChangeEvent<HTMLSelectElement>
-  ) => {
-    soldProductIdRef.current = selectProduct.target.value;
-  };
+
   return (
     <div>
       <label>
