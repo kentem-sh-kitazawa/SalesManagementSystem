@@ -6,7 +6,6 @@ import type { ProductStockType } from "../Types/ProductStockType";
 import type { SoldProductType } from "../Types/SoldProductType";
 import type { Producttype } from "../Types/Products";
 import { getDate } from "../utils/dateUtils";
-// import { getDate } from "../utils/dateUtils";
 
 type Props = {
   products: Producttype[];
