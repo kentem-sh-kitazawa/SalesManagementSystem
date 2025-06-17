@@ -12,6 +12,10 @@ type Props = {
   productStocks: ProductStockType[];
   setSoldProducts: Dispatch<SetStateAction<SoldProductType[]>>;
 };
+type checkBox = {
+  id: string | undefined;
+  isCheck: boolean;
+};
 
 const ProductSalesForm = ({
   products,
@@ -23,10 +27,6 @@ const ProductSalesForm = ({
   const soldQuantiryRef = useRef<HTMLInputElement>(null);
   const [isInputCheck, setIsInputCheck] = useState<boolean>(true);
   // チェック状態の確認
-  type checkBox = {
-    id: string | undefined;
-    isCheck: boolean;
-  };
   const checkBoxRef = useRef<checkBox[]>(
     productStocks.map((product) => {
       return { id: product.id, isCheck: false };
@@ -60,9 +60,6 @@ const ProductSalesForm = ({
       setSoldProducts((prev) => [...prev, ...saleInfo]);
     }
   };
-
-  //販売数
-  const soldQuantiryRef = useRef<HTMLInputElement>(null);
 
   return (
     <div>
