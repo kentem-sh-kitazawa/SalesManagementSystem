@@ -28,11 +28,8 @@ const ProductRegisterForm = ({ setProducts, products }: Props) => {
   };
 
   const handleOnRegisterButton = () => {
-    if (nameInputRef.current!.value === "") {
-      setIsInputTextCheck(true);
-    } else {
-      setIsInputTextCheck(false);
-    }
+    const isEmptyName = nameInputRef.current!.value === "";
+    setIsInputTextCheck(isEmptyName);
   };
 
   return (
