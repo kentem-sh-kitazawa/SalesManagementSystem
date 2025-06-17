@@ -4,13 +4,18 @@ import { v4 as uuidv4 } from "uuid";
 
 import type { ProductStockType } from "../Types/ProductStockType";
 import type { SoldProductType } from "../Types/SoldProductType";
+import type { Producttype } from "../Types/Products";
+import { getDate } from "../utils/dateUtils";
+// import { getDate } from "../utils/dateUtils";
 
 type Props = {
+  products: Producttype[];
   productStocks: ProductStockType[];
   setSoldProducts: Dispatch<SetStateAction<SoldProductType[]>>;
 };
 
 const ProductSalesForm = ({
+  products,
   productStocks,
   setSoldProducts,
 }: Props) => {
