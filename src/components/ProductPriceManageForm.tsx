@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import {
   useRef,
+  useState,
   type ChangeEvent,
   type Dispatch,
   type SetStateAction,
@@ -25,7 +26,7 @@ const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
   const purchasePriceRef = useRef<HTMLInputElement>(null);
   //販売価格
   const salePriceRef = useRef<HTMLInputElement>(null);
-
+  const [isInputTextsCheck, setIsInputTextsCheck] = useState<boolean>(true);
   const handleSelectProductChange = (
     selectProduct: ChangeEvent<HTMLSelectElement>
   ) => {
