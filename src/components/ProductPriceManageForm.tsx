@@ -11,11 +11,13 @@ import { v4 as uuidv4 } from "uuid";
 import type { ProductStockType } from "../Types/ProductStockType";
 import type { Producttype } from "../Types/Products";
 import { getDate } from "../utils/dateUtils";
+
 type Props = {
   productStocks: ProductStockType[];
   products: Producttype[];
   setProductStocks: Dispatch<SetStateAction<ProductStockType[]>>;
 };
+
 const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
   const navigate = useNavigate();
   //判定用のid
@@ -44,6 +46,7 @@ const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
       setIsInputTextsCheck(false);
     }
   };
+
   return (
     <div>
       <h2>仕入処理</h2>
