@@ -12,6 +12,22 @@ type Props = {
 const SalesHistoryForm = ({ soldProducts, productStocks, products }: Props) => {
   const navigate = useNavigate();
 
+  const getSoldTotal = () => {
+    let total = 0;
+    soldProducts.forEach((soldProduct) => {
+      total = soldProduct.salePrice * soldProduct.soldQuantiry + total;
+    });
+    return total;
+  };
+
+  const getPurchaseTotal = () => {
+    let total = 0;
+    productStocks.forEach((productStock) => {
+      total = productStock.purchasePrice ?? 0 + total;
+    });
+    return total;
+  };
+
   return (
     <>
       <table>
@@ -54,8 +70,8 @@ const SalesHistoryForm = ({ soldProducts, productStocks, products }: Props) => {
       >
         戻る
       </button>
-      <p>売上合計</p>
-      <p>利益合計</p>
+      <p>売上合計:{getSoldTotal()}</p>
+      <p>利益合計:{getSoldTotal() - getPurchaseTotal()}</p>
     </>
   );
 };
