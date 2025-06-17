@@ -26,10 +26,8 @@ const ProductRegisterForm = ({ setProducts, products }: Props) => {
   const handleOnRegisterButton = () => {
     if (nameInputRef.current!.value === "") {
       setIsInputTextCheck(true);
-      console.log(true);
     } else {
       setIsInputTextCheck(false);
-      console.log(false);
     }
   };
 
