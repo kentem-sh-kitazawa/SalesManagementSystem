@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import ProductRegisterForm from "./components/ProductRegisterForm";
 import ProductPriceManageForm from "./components/ProductPriceManageForm";
@@ -18,9 +18,6 @@ function App() {
   //登録した商品を管理するstate
   const [products, setProducts] = useState<Producttype[]>([]);
 
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
   return (
     <Router>
       <></>
@@ -42,7 +39,6 @@ function App() {
               productStocks={productStocks}
               setProductStocks={setProductStocks}
               products={products}
-              getDate={getDate}
             />
           }
         ></Route>
@@ -51,10 +47,8 @@ function App() {
           element={
             <ProductSalesForm
               productStocks={productStocks}
-              soldProducts={soldProducts}
-              setProductStocks={setProductStocks}
+              products={products}
               setSoldProducts={setSoldProducts}
-              getDate={getDate}
             />
           }
         ></Route>
