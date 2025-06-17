@@ -20,6 +20,9 @@ type Props = {
 
 const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
   const navigate = useNavigate();
+
+  const [isInputTextsCheck, setIsInputTextsCheck] = useState<boolean>(true);
+
   //判定用のid
   const selectProductIdRef = useRef<string>(products[0].id);
   //仕入数
@@ -28,7 +31,7 @@ const ProductPriceManageForm = ({ products, setProductStocks }: Props) => {
   const purchasePriceRef = useRef<HTMLInputElement>(null);
   //販売価格
   const salePriceRef = useRef<HTMLInputElement>(null);
-  const [isInputTextsCheck, setIsInputTextsCheck] = useState<boolean>(true);
+
   const handleSelectProductChange = (
     selectProduct: ChangeEvent<HTMLSelectElement>
   ) => {
