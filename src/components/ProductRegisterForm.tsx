@@ -8,9 +8,11 @@ type Props = {
   products: Producttype[];
 };
 const ProductRegisterForm = ({ setProducts, products }: Props) => {
+  const [isInputTextCheck, setIsInputTextCheck] = useState<boolean>(true);
   //商品名を登録する
-  const navigate = useNavigate();
   const nameInputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+
   const handleOnRegister = () => {
     if (nameInputRef.current) {
       const newProduct: Producttype = {
@@ -27,7 +29,9 @@ const ProductRegisterForm = ({ setProducts, products }: Props) => {
         商品名
         <input type="text" ref={nameInputRef} />
       </label>
-      <button onClick={handleOnRegister}>登録</button>
+      <button onClick={handleOnRegister} disabled={isInputTextCheck}>
+        登録
+      </button>
       <button
         onClick={() => {
           navigate("/");
