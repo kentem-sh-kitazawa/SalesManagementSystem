@@ -69,8 +69,12 @@ const ProductSalesForm = ({
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>商品名</th>
-            <th>個数</th>
+            <th>在庫数</th>
+            <th>仕入価格</th>
+            <th>販売価格</th>
+            <th>販売数</th>
           </tr>
         </thead>
         <tbody>
