@@ -1,6 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import type { SoldProductType } from "../Types/SoldProductType";
+import type { ProductStockType } from "../Types/ProductStockType";
+import type { Producttype } from "../Types/Products";
 
-const SalesHistoryForm = () => {
+type Props = {
+  soldProducts: SoldProductType[];
+  productStocks: ProductStockType[];
+  products: Producttype[];
+};
+
+const SalesHistoryForm = ({ soldProducts, productStocks, products }: Props) => {
   const navigate = useNavigate();
 
   return (

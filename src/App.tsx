@@ -61,7 +61,16 @@ function App() {
             />
           }
         ></Route>
-        <Route path="/SalesHistoryForm" element={<SalesHistoryForm />}></Route>
+        <Route
+          path="/SalesHistoryForm"
+          element={
+            <SalesHistoryForm
+              soldProducts={soldProducts}
+              productStocks={productStocks}
+              products={products}
+            />
+          }
+        ></Route>
       </Routes>
     </Router>
   );
