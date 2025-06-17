@@ -18,16 +18,6 @@ function App() {
   //登録した商品を管理するstate
   const [products, setProducts] = useState<Producttype[]>([]);
 
-  const getDate = () => {
-    const purchaseDate = new Date();
-    return `${purchaseDate.getFullYear()}年${
-      purchaseDate.getMonth() + 1
-    }月${purchaseDate.getDate()}日`;
-  };
-
-  // useEffect(() => {
-  //   console.log(productStocks);
-  // }, [productStocks]);
   useEffect(() => {
     console.log(products);
   }, [products]);
