@@ -8,15 +8,20 @@ const TodaySalesSummary = ({
   productStocks,
   products,
 }: AllProductsType) => {
-  const [todaySoldProducts, setTodaySoldProducts] = useState<SoldProductType[]>(
-    []
+  //販売日が今日のもの
+  const todaySoldProducts = soldProducts.filter(
+    (soldProduct) => soldProduct.salesDate === getDate()
   );
-  useEffect(() => {
-    const uodataTodaySoldProducts = soldProducts.filter(
-      (soldProduct) => soldProduct.salesDate === getDate()
-    );
-    setTodaySoldProducts(uodataTodaySoldProducts);
-  }, [soldProducts]);
+
+  const todayPurchaseInfo: ProductStockType[] = todaySoldProducts
+    .map((todaySoldProduct) => {
+      const productStock = productStocks.find(
+        (productStock) => todaySoldProduct.productId === productStock.productId
+      );
+      return productStock;
+    })
+    .filter((productStock) => productStock !== undefined);
+
   return (
     <>
       <p>本日の販売状況</p>
