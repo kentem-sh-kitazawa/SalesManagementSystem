@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useRef, useState, type Dispatch, type SetStateAction } from "react";
+import { useRef, type Dispatch, type SetStateAction } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import type { ProductStockType } from "../Types/ProductStockType";
@@ -25,7 +25,6 @@ const ProductSalesForm = ({
   const navigate = useNavigate();
   //販売数
   const soldQuantiryRef = useRef<HTMLInputElement>(null);
-  const [isInputCheck, setIsInputCheck] = useState<boolean>(true);
   // チェック状態の確認
   const checkBoxRef = useRef<checkBox[]>(
     productStocks.map((product) => {
@@ -33,15 +32,6 @@ const ProductSalesForm = ({
     })
   );
 
-  const handleOnSaleButton = () => {
-    if (!checkBoxRef.current.find((product) => product.isCheck)) {
-      setIsInputCheck(true);
-    } else if (Number(soldQuantiryRef.current?.value) === 0) {
-      setIsInputCheck(true);
-    } else {
-      setIsInputCheck(false);
-    }
-  };
   const handleOnCheckBox = (selectId: string, value: boolean) => {
     checkBoxRef.current.forEach((checkBox) => {
       if (selectId === checkBox.id) {
@@ -92,7 +82,6 @@ const ProductSalesForm = ({
                   type="checkbox"
                   onChange={(event) => {
                     handleOnCheckBox(productStock.id, event.target.checked);
-                    handleOnSaleButton();
                   }}
                 />
               </td>
@@ -107,19 +96,13 @@ const ProductSalesForm = ({
               <td>{productStock.purchasePrice}</td>
               <td>{productStock.salePrice}</td>
               <td>
-                <input
-                  type="number"
-                  ref={soldQuantiryRef}
-                  onChange={handleOnSaleButton}
-                ></input>
+                <input type="number" ref={soldQuantiryRef}></input>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button onClick={addSoldProduct} disabled={isInputCheck}>
-        販売
-      </button>
+      <button onClick={addSoldProduct}>販売</button>
       <button
         onClick={() => {
           navigate("/");
