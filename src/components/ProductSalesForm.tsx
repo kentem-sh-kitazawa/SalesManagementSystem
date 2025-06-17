@@ -78,10 +78,29 @@ const ProductSalesForm = ({
           </tr>
         </thead>
         <tbody>
-          {todaySoldProducts.map((products) => (
-            <tr key={products.id}>
-              <td>{products.productName}</td>
-              <td>{products.todaySoldQuantiry}</td>
+          {productStocks.map((productStock) => (
+            <tr key={productStock.id}>
+              <td>
+                <input
+                  type="checkbox"
+                  onChange={(event) =>
+                    handleOnCheckBox(productStock.id, event.target.checked)
+                  }
+                />
+              </td>
+              <td>
+                {
+                  products.find(
+                    (product) => product.id === productStock.productId
+                  )?.productName
+                }
+              </td>
+              <td>{productStock.stockQuantiry}</td>
+              <td>{productStock.purchasePrice}</td>
+              <td>{productStock.salePrice}</td>
+              <td>
+                <input type="number" ref={soldQuantiryRef}></input>
+              </td>
             </tr>
           ))}
         </tbody>
