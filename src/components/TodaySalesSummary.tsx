@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import type { AllProductsType } from "../Types/AllProductsType";
 import { getDate } from "../utils/dateUtils";
-import type { SoldProductType } from "../Types/SoldProductType";
+import { getProfitTotal, getSoldTotal } from "../utils/totalUtils";
+import type { ProductStockType } from "../Types/ProductStockType";
 
 const TodaySalesSummary = ({
   soldProducts,
