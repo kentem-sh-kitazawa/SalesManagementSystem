@@ -32,7 +32,6 @@ const ProductSalesForm = ({
     })
   );
   const handleOnCheckBox = (selectId: string, value: boolean) => {
-    console.log(value);
     checkBoxRef.current.forEach((checkBox) => {
       if (selectId === checkBox.id) {
         checkBox.isCheck = value;
