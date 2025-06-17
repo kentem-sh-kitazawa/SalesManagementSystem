@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useRef, type Dispatch, type SetStateAction } from "react";
+import { useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import type { ProductStockType } from "../Types/ProductStockType";
@@ -19,7 +19,9 @@ const ProductSalesForm = ({
   setSoldProducts,
 }: Props) => {
   const navigate = useNavigate();
-  //判定用のid
+  //販売数
+  const soldQuantiryRef = useRef<HTMLInputElement>(null);
+  const [isInputCheck, setIsInputCheck] = useState<boolean>(true);
   // チェック状態の確認
   type checkBox = {
     id: string | undefined;
