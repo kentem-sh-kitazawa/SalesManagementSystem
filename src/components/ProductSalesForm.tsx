@@ -21,7 +21,46 @@ const ProductSalesForm = ({
 }: Props) => {
   const navigate = useNavigate();
   //判定用のid
-  const soldProductIdRef = useRef<string>(productStocks[0].id);
+  // チェック状態の確認
+  type checkBox = {
+    id: string | undefined;
+    isCheck: boolean;
+  };
+  const checkBoxRef = useRef<checkBox[]>(
+    productStocks.map((product) => {
+      return { id: product.id, isCheck: false };
+    })
+  );
+  const handleOnCheckBox = (selectId: string, value: boolean) => {
+    console.log(value);
+    checkBoxRef.current.forEach((checkBox) => {
+      if (selectId === checkBox.id) {
+        checkBox.isCheck = value;
+      }
+    });
+  };
+  const addSoldProduct = () => {
+    if (soldQuantiryRef.current) {
+      const checkedProduct = checkBoxRef.current.find(
+        (checkBox) => checkBox.isCheck
+      );
+      const selectProducts = productStocks.filter(
+        (products) => checkedProduct && products.id === checkedProduct.id
+      );
+      const saleInfo = selectProducts.map((product) => {
+        const soldProduct: SoldProductType = {
+          id: uuidv4(),
+          productId: product.productId,
+          salePrice: product.salePrice!,
+          soldQuantiry: Number(soldQuantiryRef.current!.value),
+          salesDate: getDate(),
+        };
+        return soldProduct;
+      });
+      setSoldProducts((prev) => [...prev, ...saleInfo]);
+    }
+  };
+
   //販売数
   const soldQuantiryRef = useRef<HTMLInputElement>(null);
   const [todaySoldProducts, setTodaySoldProducts] = useState<
@@ -166,13 +205,7 @@ const ProductSalesForm = ({
           ))}
         </tbody>
       </table>
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        販売
-      </button>
+      <button onClick={addSoldProduct}>販売</button>
       <button
         onClick={() => {
           navigate("/");
