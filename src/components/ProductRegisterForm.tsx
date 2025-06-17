@@ -3,14 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import type { Producttype } from "../Types/Products";
+
 type Props = {
   setProducts: Dispatch<React.SetStateAction<Producttype[]>>;
   products: Producttype[];
 };
+
 const ProductRegisterForm = ({ setProducts, products }: Props) => {
   const [isInputTextCheck, setIsInputTextCheck] = useState<boolean>(true);
+
   //商品名を登録する
   const nameInputRef = useRef<HTMLInputElement>(null);
+
   const navigate = useNavigate();
 
   const handleOnRegister = () => {
