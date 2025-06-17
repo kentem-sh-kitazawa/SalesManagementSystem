@@ -1,13 +1,22 @@
+import type { AllProductsType } from "../Types/AllProductsType";
 import NavigationPanel from "./NavigationPanel";
 import TodaySalesSummary from "./TodaySalesSummary";
 
-const HomePage = () => {
+const HomePage = ({
+  soldProducts,
+  productStocks,
+  products,
+}: AllProductsType) => {
   return (
     <>
       <p>販売管理システム</p>
       <div>
         <NavigationPanel />
-        <TodaySalesSummary />
+        <TodaySalesSummary
+          soldProducts={soldProducts}
+          productStocks={productStocks}
+          products={products}
+        />
       </div>
     </>
   );

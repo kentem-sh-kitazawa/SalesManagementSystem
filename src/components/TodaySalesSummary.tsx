@@ -1,4 +1,10 @@
-const TodaySalesSummary = () => {
+import type { AllProductsType } from "../Types/AllProductsType";
+
+const TodaySalesSummary = ({
+  soldProducts,
+  productStocks,
+  products,
+}: AllProductsType) => {
   return (
     <>
       <p>本日の販売状況</p>

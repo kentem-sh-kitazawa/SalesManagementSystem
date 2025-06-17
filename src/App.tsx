@@ -22,7 +22,16 @@ function App() {
     <Router>
       <></>
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              soldProducts={soldProducts}
+              productStocks={productStocks}
+              products={products}
+            />
+          }
+        ></Route>
         <Route
           path="/ProductRegisterForm"
           element={
