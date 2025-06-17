@@ -9,10 +9,18 @@ export const getSoldTotal = (soldProducts: SoldProductType[]) => {
   return total;
 };
 
-export const getPurchaseTotal = (productStocks: ProductStockType[]) => {
-  let total = 0;
-  productStocks.forEach((productStock) => {
-    total = productStock.purchasePrice ?? 0 + total;
+export const getProfitTotal = (
+  productStocks: ProductStockType[],
+  soldProducts: SoldProductType[]
+) => {
+  let costTotal = 0;
+  const salePurcheseInfos = soldProducts.map((soldProduct) => {
+    return productStocks.find(
+      (productStock) => soldProduct.productId === productStock.productId
+    );
   });
-  return total;
+  salePurcheseInfos.forEach((salePurcheseInfo) => {
+    costTotal += salePurcheseInfo!.purchasePrice!;
+  });
+  return getSoldTotal(soldProducts) - costTotal;
 };
